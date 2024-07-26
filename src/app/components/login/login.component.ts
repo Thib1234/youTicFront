@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
     console.log('Form submitted:', this.loginForm.value);
 
     if (this.loginForm.valid) {
-        const { email, password } = this.loginForm.value;
-        this.authService.login(email, password).subscribe(
+        const { username, password } = this.loginForm.value;
+        this.authService.login(username, password).subscribe(
             response => {
                 console.log('Login successful:', response);
                 this.router.navigate(['/dashboard']);

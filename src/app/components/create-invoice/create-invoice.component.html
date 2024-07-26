@@ -1,0 +1,51 @@
+<form [formGroup]="factureForm" (ngSubmit)="onSubmit()" class="space-y-4 p-4 bg-white shadow-md rounded-md">
+  <div>
+    <label for="client" class="block text-sm font-medium text-gray-700">Client</label>
+    <select id="client" formControlName="client"
+      class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      <option *ngFor="let client of clients" [value]="client.id">{{ client.nom }} {{client.id}}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
+    <input id="date" type="date" formControlName="date"
+      class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+  </div>
+
+  <div>
+    <label for="statut" class="block text-sm font-medium text-gray-700">Statut</label>
+    <input id="statut" type="text" formControlName="statut"
+      class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+  </div>
+
+  <div>
+    <label for="montant_total" class="block text-sm font-medium text-gray-700">Montant Total</label>
+    <input id="montant_total" type="number" formControlName="montant_total"
+      class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+  </div>
+
+  <div>
+    <label for="montant_tva" class="block text-sm font-medium text-gray-700">Montant TVA</label>
+    <input id="montant_tva" type="number" formControlName="montant_tva"
+      class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+  </div>
+
+  <div formArrayName="lignesFacture" *ngFor="let ligneFacture of lignesFacture.controls; let i = index">
+    <div [formGroupName]="i" class="space-y-2">
+      <input formControlName="description" placeholder="Description">
+      <input formControlName="quantite" type="number" placeholder="Quantité">
+      <input formControlName="prix_unitaire" type="number" placeholder="Prix unitaire">
+      <input formControlName="total_ligne" type="number" placeholder="Total ligne" readonly>
+      <input formControlName="total_ligne_htva" type="number" placeholder="Total ligne HTVA" readonly>
+    </div>
+
+  </div>
+
+  <button type="button" (click)="addLigneFacture()">Ajouter une ligne de facture</button>
+
+  <button type="submit"
+    class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    Créer une facture
+  </button>
+</form>

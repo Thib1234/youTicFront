@@ -1,1 +1,32 @@
-<p>dashboard works!</p>
+<div class="grid grid-cols-2 gap-4 p-4">
+  <div class="col-span-2">
+    <h1 class="text-2xl font-bold">Tableau de bord</h1>
+  </div>
+
+  <div class="col-span-2 md:col-span-1">
+    <h2 class="text-xl font-semibold">Vue d'ensemble</h2>
+    <!-- Insérez ici les statistiques de facturation -->
+  </div>
+
+  <div class="col-span-2 md:col-span-1">
+    <h2 class="text-xl font-semibold">Factures</h2>
+    <button class="px-4 py-2 bg-blue-500 text-white rounded">Nouvelle facture</button>
+    <!-- Insérez ici la liste des factures -->
+  </div>
+
+  <div class="col-span-2 md:col-span-1">
+    <h2 class="text-xl font-semibold">Clients</h2>
+    <a href="/create-client">Nouveau client</a>
+    <app-recent-clients></app-recent-clients>
+  </div>
+
+  <div class="col-span-2 md:col-span-1">
+    <h2 class="text-xl font-semibold">Rapports</h2>
+    <!-- Insérez ici les rapports -->
+  </div>
+
+  <div class="col-span-2">
+    <h2 class="text-xl font-semibold">Paramètres</h2>
+    <!-- Insérez ici les paramètres -->
+  </div>
+</div>

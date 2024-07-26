@@ -1,58 +1,77 @@
-import { Injectable } from '@angular/core';
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 interface User {
     id: number;
-    email: string;
+    username: string;
     token: string;
+    status: string;
     // autres champs nécessaires
 }
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    private currentUserSubject: BehaviorSubject<User | null>;
-    public currentUser: Observable<User | null>;
 
-    constructor(private http: HttpClient) {
-        const storedUser = localStorage.getItem('currentUser');
-        this.currentUserSubject = new BehaviorSubject<User | null>(
-            storedUser ? JSON.parse(storedUser) : null
-        );
-        this.currentUser = this.currentUserSubject.asObservable();
+    constructor(private http: HttpClient, private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {
+        const isBrowser = isPlatformBrowser(this.platformId);
+        let storedUser = null;
+        if (isBrowser) {
+            storedUser = localStorage.getItem('token');
+        }
+
     }
 
-    public get currentUserValue(): User | null {
-        return this.currentUserSubject.value;
-    }
-
-    login(email: string, password: string): Observable<any> {
-      return this.http.post<any>(`http://localhost:8000/accounts/login/`, { email, password })
+    login(username: string, password: string): Observable<any> {
+      return this.http.post<any>(`http://localhost:8000/api/token/`, { username, password })
           .pipe(
               map(response => {
-                  if (response.status === 'error') {
-                      throw new Error(response.message);  // Lancer une erreur si l'authentification échoue
+                  console.log('Token reçu du serveur:', response.access);
+                  // localStorage.setItem('token', (response.token));
+                  const isBrowser = isPlatformBrowser(this.platformId);
+                  if (isBrowser) {
+                    let tok = JSON.stringify(response.access);
+                    tok = tok.replaceAll('\"','');
+                    console.log('tok');
+
+                    console.log(tok);
+                    localStorage.setItem('token', tok);
                   }
-                  // Si l'authentification réussit, stocker les informations de l'utilisateur
-                  localStorage.setItem('currentUser', JSON.stringify(response));
-                  this.currentUserSubject.next(response);
+                  this.router.navigate(['/dashboard']);
                   return response;
               }),
               catchError(error => {
                   console.error('Login error:', error);
-                  return throwError(error);  // Propager l'erreur pour être gérée dans le composant
+                  return throwError(error);
               })
           );
   }
 
+  getAuthorizationToken(): string | null {
+    return localStorage.getItem('token');
+}
 
     logout(): void {
-        localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null);
+        const isBrowser = isPlatformBrowser(this.platformId);
+        if (isBrowser) {
+            localStorage.removeItem('currentUser');
+        }
     }
 
     isLoggedIn(): boolean {
-        return this.currentUserValue !== null;
-    }
+      const isBrowser = isPlatformBrowser(this.platformId);
+      if (isBrowser) {
+          const currentUser = localStorage.getItem('token');
+          console.log('brian');
+
+          console.log(currentUser);
+          return currentUser ? currentUser !== null : false;
+      }
+      return false;
+  }
+
+
 }
