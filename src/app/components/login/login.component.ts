@@ -21,8 +21,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Form submitted:', this.loginForm.value);
-
     if (this.loginForm.valid) {
         const { username, password } = this.loginForm.value;
         this.authService.login(username, password).subscribe(

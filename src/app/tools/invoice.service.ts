@@ -46,6 +46,34 @@ export class InvoiceService {
       })
     );
   }
-
-  // Ajoutez ici d'autres méthodes pour obtenir, mettre à jour et supprimer des factures
+  generateInvoice(invoiceId: number): Observable<Blob> {
+    const headers = this.getAuthHeaders();
+    console.log('En-têtes de la requête:', headers);  // Debugging
+    return this.http.get(`${this.apiUrl}/generate-invoice/${invoiceId}/`, { headers, responseType: 'blob' }).pipe(
+      catchError(error => {
+        console.error('Erreur lors de la génération de la facture:', error);  // Debugging
+        return throwError(error);
+      })
+    );
+  }
+  getTotalAmountByDay(): Observable<any> {
+    const headers = this.getAuthHeaders();
+    console.log('En-têtes de la requête:', headers);  // Debugging
+    return this.http.get(`${this.apiUrl}/total-amount-by-month/`, { headers }).pipe(
+    catchError(error => {
+      console.error('Erreur lors de la récupération du montant total par jour et du mois:', error);  // Debugging
+      return throwError(error);
+    })
+  );
+}
+  getRecentInvoices(): Observable<any> {
+    const headers = this.getAuthHeaders();
+    console.log('En-têtes de la requête:', headers);  // Debugging
+    return this.http.get(`${this.apiUrl}/recent/`, { headers }).pipe(
+      catchError(error => {
+        console.error('Erreurlors de la sélection des factures récentes:', error);  // Debugging
+        return throwError(error);
+      })
+    );
+  }
 }

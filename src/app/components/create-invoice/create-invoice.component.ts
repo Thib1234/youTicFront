@@ -29,7 +29,7 @@ export class CreateInvoiceComponent implements OnInit {
 
     this.clientService.getClients().subscribe(data => {
       this.clients = data;
-      console.log(data);
+
     });
 
     this.factureForm.get('lignesFacture')?.valueChanges.subscribe(values => {
@@ -88,10 +88,8 @@ export class CreateInvoiceComponent implements OnInit {
 
   onSubmit(): void {
     if (this.factureForm?.valid) {
-      console.log('Valeurs du formulaire:', this.factureForm.value);
 
       this.invoiceService.createInvoice(this.factureForm.value).subscribe(response => {
-          console.log('Réponse de la création de la facture:', response);
 
           // Vérifie que factureId est bien défini
           const factureId = response.id;
@@ -111,7 +109,7 @@ export class CreateInvoiceComponent implements OnInit {
               total_ligne_htva: control.get('total_ligne_htva')?.value
             };
 
-            console.log('Données de la ligne de facture:', ligneFactureData); // Debugging
+
 
             this.ligneFactureService.createLigneFacture(ligneFactureData).subscribe(
               res => {

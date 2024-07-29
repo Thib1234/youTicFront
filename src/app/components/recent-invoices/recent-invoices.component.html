@@ -1,0 +1,14 @@
+<div class="space-y-4">
+  @for (invoice of invoices; track invoice.id){
+    <div class="p-4 bg-white rounded-lg shadow-md">
+      <p class="text-gray-700 font-semibold">Facture</p>
+      <p class="text-gray-900">{{ invoice.date }}</p>
+      <p class="text-gray-900">{{ invoice.status }}</p>
+      <p class="text-gray-900">{{ invoice.montant_total }}</p>
+      <p class="text-gray-900">{{ invoice.client }}</p>
+    </div>
+  }
+  @empty {
+    <p class="text-gray-500">Aucune facture.</p>
+  }
+</div>

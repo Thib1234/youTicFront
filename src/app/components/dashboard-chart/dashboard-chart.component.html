@@ -1,0 +1,12 @@
+<div>
+  <h2 class="text-xl font-semibold">Vue d'ensemble pour le mois</h2>
+  @if (isDone) {
+    Total sur le mois : {{total_amount_month}}
+  <canvas baseChart
+          [data]="lineChartData"
+          [options]="lineChartOptions"
+          [type]="'line'">
+  </canvas>
+
+}
+</div>

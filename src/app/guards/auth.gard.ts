@@ -9,7 +9,7 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
-  Router
+  Router,
 } from '@angular/router';
 import {
   Observable
@@ -25,20 +25,14 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable < boolean | UrlTree > | Promise < boolean | UrlTree > | boolean | UrlTree {
-      console.log("fekqsfdml");
-
-    console.log(localStorage.getItem('token'));
 
     const isAuthenticated = this.authService.isLoggedIn(); // Vérifie si l'utilisateur est connecté
-    console.log('AuthGuard#canActivate called, isAuthenticated:', isAuthenticated);
     if (isAuthenticated) {
       return true;
     } else {
-      console.log('User not authenticated, redirecting to /login');
-      this.router.navigate(['/login']); // Redirige vers la page de connexion si l'utilisateur n'est pas connecté
+      if (localStorage.getItem("token") == null || localStorage.getItem("token") == undefined)
+        this.router.navigate(['/login']);
       return false;
     }
   }
-
-
 }

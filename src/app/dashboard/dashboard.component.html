@@ -4,19 +4,18 @@
   </div>
 
   <div class="col-span-2 md:col-span-1">
-    <h2 class="text-xl font-semibold">Vue d'ensemble</h2>
-    <!-- Insérez ici les statistiques de facturation -->
+    <app-dashboard-chart></app-dashboard-chart>
   </div>
 
   <div class="col-span-2 md:col-span-1">
-    <h2 class="text-xl font-semibold">Factures</h2>
-    <button class="px-4 py-2 bg-blue-500 text-white rounded">Nouvelle facture</button>
-    <!-- Insérez ici la liste des factures -->
+    <h2 class="text-xl font-semibold mb-5">Factures</h2>
+    <app-recent-invoices></app-recent-invoices>
+    <a href="/create-invoice" class="text-blue-500 hover:text-blue-700 px-4 py-2 border border-blue-500 rounded transition duration-300 mt-5">Créer une facture</a>
   </div>
 
   <div class="col-span-2 md:col-span-1">
-    <h2 class="text-xl font-semibold">Clients</h2>
-    <a href="/create-client">Nouveau client</a>
+    <h2 class="text-xl font-semibold mb-5">Clients</h2>
+    <a href="/create-client" class="text-blue-500 hover:text-blue-700 px-4 py-2 border border-blue-500 rounded transition duration-300">Nouveau client</a>
     <app-recent-clients></app-recent-clients>
   </div>
 

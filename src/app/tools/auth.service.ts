@@ -65,9 +65,7 @@ export class AuthService {
       const isBrowser = isPlatformBrowser(this.platformId);
       if (isBrowser) {
           const currentUser = localStorage.getItem('token');
-          console.log('brian');
 
-          console.log(currentUser);
           return currentUser ? currentUser !== null : false;
       }
       return false;

@@ -16,5 +16,15 @@ export class ShowInvoicesComponent implements OnInit {
       this.invoices = invoices;
     });
   }
+  generateInvoice(invoice: any): void {
+    this.invoiceService.generateInvoice(invoice.id).subscribe((response: Blob) => {
+      const url = window.URL.createObjectURL(response);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `facture_${invoice.id}.pdf`;
+      a.click();
+    });
+  }
+
 
 }
