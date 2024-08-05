@@ -10,12 +10,8 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'invoices';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  // constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-
-    // else {
-    //   this.router.navigate(['/dashboard']);
-    // }
   }
 }

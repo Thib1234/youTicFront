@@ -1,31 +1,35 @@
-<div class="grid grid-cols-2 gap-4 p-4">
-  <div class="col-span-2">
-    <h1 class="text-2xl font-bold">Tableau de bord</h1>
+<div class="grid grid-cols-2 gap-8 px-8">
+  <div class="col-span-2 mb-8">
+    <h1 class="text-3xl font-bold">Tableau de bord</h1>
   </div>
 
-  <div class="col-span-2 md:col-span-1">
+  <div class="col-span-2 md:col-span-1 mb-8">
     <app-dashboard-chart></app-dashboard-chart>
   </div>
 
-  <div class="col-span-2 md:col-span-1">
-    <h2 class="text-xl font-semibold mb-5">Factures</h2>
+  <div class="col-span-2 md:col-span-1 mb-8">
+    <div class="flex justify-between">
+      <h2 class="text-2xl font-semibold mb-5">Factures</h2>
+      <a routerLink="/create-invoice"
+        class="text-blue-500 hover:text-blue-700 px-4 py-2 border border-blue-500 rounded transition duration-300 mt-5 block">Créer
+        une facture</a>
+    </div>
     <app-recent-invoices></app-recent-invoices>
-    <a href="/create-invoice" class="text-blue-500 hover:text-blue-700 px-4 py-2 border border-blue-500 rounded transition duration-300 mt-5">Créer une facture</a>
+
   </div>
 
-  <div class="col-span-2 md:col-span-1">
-    <h2 class="text-xl font-semibold mb-5">Clients</h2>
-    <a href="/create-client" class="text-blue-500 hover:text-blue-700 px-4 py-2 border border-blue-500 rounded transition duration-300">Nouveau client</a>
+  <div class="col-span-2 md:col-span-1 mb-8">
+    <div class="flex justify-between">
+      <h2 class="text-2xl font-semibold mb-5">Clients</h2>
+      <a routerLink="/create-client"
+        class="text-blue-500 hover:text-blue-700 px-4 py-2 border border-blue-500 rounded transition duration-300 block mb-5">Nouveau
+        client</a>
+    </div>
     <app-recent-clients></app-recent-clients>
+
   </div>
 
-  <div class="col-span-2 md:col-span-1">
-    <h2 class="text-xl font-semibold">Rapports</h2>
-    <!-- Insérez ici les rapports -->
-  </div>
-
-  <div class="col-span-2">
-    <h2 class="text-xl font-semibold">Paramètres</h2>
-    <!-- Insérez ici les paramètres -->
+  <div class="col-span-2 md:col-span-1 mb-8">
+    <h2 class="text-2xl font-semibold">Rapports</h2>
   </div>
 </div>

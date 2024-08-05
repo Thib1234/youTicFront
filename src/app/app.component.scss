@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+app-navbar {
+  width: 1/6;
+}
+
+router-outlet {
+  flex: 1;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}

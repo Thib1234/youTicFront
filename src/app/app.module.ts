@@ -21,6 +21,8 @@ import { DashboardChartComponent } from './components/dashboard-chart/dashboard-
 import { Chart, registerables } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { RecentInvoicesComponent } from './components/recent-invoices/recent-invoices.component';
+import { NgIconsModule } from '@ng-icons/core';
+import { heroChevronUp, heroChevronDown, heroChevronRight } from '@ng-icons/heroicons/outline';
 
 Chart.register(...registerables);
 @NgModule({
@@ -44,7 +46,8 @@ Chart.register(...registerables);
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    BaseChartDirective
+    BaseChartDirective,
+    NgIconsModule.withIcons({ heroChevronUp, heroChevronDown, heroChevronRight }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
